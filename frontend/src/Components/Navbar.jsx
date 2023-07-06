@@ -128,11 +128,16 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   
-    const { loginWithRedirect, isAuthenticated , logout, user } = useAuth0();
+  let navigate=useNavigate();
+  // let navigate = useNavigate();
+    // const { loginWithRedirect, isauth , logout, user } = useAuth0();
+    let loginWithRedirect=()=>{
+      navigate("/login");
+    }
   const [showSearchBar, setShowSearchBar] =  useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  let {cart,setCart,isauth,setisauth}=useContext(Appcontext);
+  let {cart,setCart,isauth,setisauth,user,setuser}=useContext(Appcontext);
 
 
 
@@ -145,7 +150,6 @@ const Navbar = () => {
   };
 
 
-    let navigate=useNavigate();
 
   const handleSearch = () => {
     // console.log('Search query:', searchQuery);
@@ -156,12 +160,12 @@ const Navbar = () => {
   const cartItemCount = cart.length;
 
 useEffect(()=>{
-  if(isAuthenticated)
+  if(isauth)
 setisauth(true)
 else{
   setisauth(false);
 }
-},[isAuthenticated])
+},[isauth])
 
   return (
     <Box border={"2px solid rgb(42,40,42)"} style={{width:"100%"}} h={"12vh"}>
@@ -189,9 +193,9 @@ else{
         <Box  h={"50px"} pt={"10px"}>{
           
           
-  isAuthenticated ?
+  isauth ?
   <Text fontWeight={"bold"}>
-    <p>{"Hi, " + user.nickname}</p>
+    <p>{"Hi, " + user.name}</p>
   </Text>
 :
           <MdOutlineAccountCircle onClick={()=>{
@@ -212,7 +216,7 @@ else{
           right="-7px"
           zIndex="docked"
           onClick={()=>{
-
+                 
           }}
         >
 
@@ -245,11 +249,10 @@ else{
 
 <>
   {
-    isAuthenticated ? 
+    isauth ? 
       <button onClick={() =>
-       {logout({ logoutParams: { returnTo: window.location.origin } })
-
-setisauth(false)
+      {
+    setisauth(false)
        }
        
        } style={{ backgroundColor: '#498070', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)' }}>

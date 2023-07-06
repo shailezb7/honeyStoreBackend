@@ -10,8 +10,6 @@ import Contact from "../Pages/Contact";
 import AllProductsPage from "../Pages/AllProductsPage";
 import CartPage from "../Pages/CartPage";
 import Login from "../Pages/Login";
-import Signup from "../Pages/Signup";
-
 
 const Allroutes = () => {
   return (
@@ -33,8 +31,6 @@ const Allroutes = () => {
       {/* login page */}
       <Route path="/login" element={<Login />}></Route>
 
-      {/* signup page */}
-      <Route path="/signup" element={<Signup />}></Route>
 
       {/* all products list page */}
       <Route path="/products" element={<AllProductsPage />}></Route>
