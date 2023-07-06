@@ -12,10 +12,6 @@ let userschema=new mongoose.Schema({
     password:{
         type:String,
         required:true
-    },
-    ipaddress:{
-        type:String,
-        default:"0.0.0.0"
     }
 })
 
