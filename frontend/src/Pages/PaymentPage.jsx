@@ -1,47 +1,3 @@
-// import { Box, Button, Checkbox, Flex, Heading,HStack,Input,Spacer,Text, VStack,Image } from '@chakra-ui/react'
-// import React, { useContext } from 'react'
-// import { Link, Navigate, useNavigate } from 'react-router-dom'
-// import { Appcontext } from '../ContextProvider/AppcontextProvider';
-
-// const PaymentPage = () => {
-// // NOTE THIS IS PAYMENT SUCCESSFUL PAGE
-//   let navigate=useNavigate();
-
-//   let {cart}=useContext(Appcontext);
-//   return (
-//     <>
-//   <Flex w={"100%"} >
-//     <Box w={"60%"} p={"50px"}>
-//       <Flex direction={"column"}>
-//         <Heading size={"md"}>LET IT BEE.CO</Heading>
-//         <br></br>
-//         <br></br>
-//         <Heading>Thank You FOr Your Order :) </Heading>
-//         <br></br>
-//         <Text> Please visit again ... </Text>
-
-//         <br></br>
-//         <br></br>
-//         <br></br>
-//         <br></br>
-//         <Button borderRadius={"30px"} m={"auto"} w={"40%"} background={"rgb(23,83,66)"} color='white'>BACK TO MAIN PAGE</Button>
-//       </Flex>
-//     </Box>
-//     <Box w={"40%"} >
-//       <Image w={"100%"} h={"88vh"}  src="https://cdn.discordapp.com/attachments/1100180350879154326/1114962765027741766/image.png"></Image>
-//     </Box>
-//   </Flex>
-//     </>
-//   )
-// }
-
-// export default PaymentPage
-
-
-
-
-
-
 
 
 
@@ -49,12 +5,26 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Box, Button, Flex, Heading, HStack, Input, Spacer, Text, VStack, Image } from '@chakra-ui/react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Appcontext } from '../ContextProvider/AppcontextProvider';
+import axios from 'axios';
 
 const PaymentPage = () => {
+  let token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { cart } = useContext(Appcontext);
   const [animationStarted, setAnimationStarted] = useState(false);
+  let getdata=async ()=>{
+    let res= await axios.get('http://localhost:3001/ordered',
+    {
+      "Content-Type":"application/json",
+      headers:{
+          Authorization:`Bearer ${token}`
+      }
+  });
+
+    console.log(res);
+  }
   useEffect(() => {
+    getdata();
    setTimeout(() => {
      setAnimationStarted(true);
    }, 1000);

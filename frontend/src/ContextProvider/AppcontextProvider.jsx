@@ -13,7 +13,7 @@ let [user,setuser] = useState({
     name:""
 })
 return(
-    <Appcontext.Provider value={{cart,setCart,page,setPage,itemwithquant,setitemwithquant,totalPrice,settotalPrice,isauth,setisauth}}>
+    <Appcontext.Provider value={{cart,setCart,page,setPage,itemwithquant,setitemwithquant,totalPrice,settotalPrice,isauth,setisauth,user,setuser}}>
         {children}
     </Appcontext.Provider>
 )

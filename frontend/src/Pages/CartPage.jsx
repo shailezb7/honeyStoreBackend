@@ -14,38 +14,47 @@ const CartPage = () => {
   let [phone,setphone]=useState("");
   let [email,setemail]=useState("");
   let [address,setaddress]=useState("");
-  let [allitems,setallitems]=useState([]);
+  let [allitems,setallitems]=useState([]); //complete products with quantity
   let [cardnumber,setcardnumber]=useState([]);
   let [cvv,setcvv]=useState([]);
   let [exp,setexp]=useState([]);
   let[total,setTotal]=useState(0);
   let {cart,setCart,page,setPage,itemwithquant,setitemwithquant,totalPrice,settotalPrice}=useContext(Appcontext);
 
+  let token = localStorage.getItem("token");
   let getdata=async()=>{
-    let res=await fetch('https://honey-store-json.onrender.com/products');
-    let jdata=await res.json();
-    let arr=[];
-    for(let i=0;i<cart.length;i++){
-       let x=jdata.filter((e,ind)=>{
-        return cart[i]==e.id
-       });
-
-      let id=cart[i];
-      let q=itemwithquant.filter((ele,ind)=>{
-        return ele.id===id
-      })
-       arr.push({...x[0],quantity:q[0].quantity});
-    }
-
-
-    for(let i=0;i<itemwithquant;i++){
-      let x=itemwithquant[i].id;
-      if(arr.includes(x)){
-
+    let res=await fetch('http://localhost:3001/myproducts',
+    {
+      "Content-Type":"application/json",
+      headers:{
+          Authorization:`Bearer ${token}`
       }
-    }
-    setallitems(arr);
-   
+  });
+    let jdata=await res.json();
+    console.log(jdata);
+     jdata=jdata.data;
+    // let arr=[];
+    // for(let i=0;i<cart.length;i++){
+    //    let x=jdata.filter((e,ind)=>{
+    //     return cart[i]==e.id
+    //    });
+
+    //   let id=cart[i];
+    //   let q=itemwithquant.filter((ele,ind)=>{
+    //     return ele.id===id
+    //   })
+    //    arr.push({...x[0],quantity:q[0].quantity});
+    // }
+
+
+    // for(let i=0;i<itemwithquant;i++){
+    //   let x=itemwithquant[i].id;
+    //   if(arr.includes(x)){
+
+    //   }
+    // }
+    setallitems(jdata);
+    setCart(jdata);
   }
   console.log(allitems)
 

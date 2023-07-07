@@ -139,7 +139,13 @@ const Navbar = () => {
 
   let {cart,setCart,isauth,setisauth,user,setuser}=useContext(Appcontext);
 
-
+ useEffect(()=>{
+  if(isauth){
+    let x=localStorage.getItem("userName");
+    console.log(x);
+    setuser({name : x});
+  }
+ },[isauth])
 
 
   const handleButtonClick = () => {
@@ -159,13 +165,8 @@ const Navbar = () => {
 
   const cartItemCount = cart.length;
 
-useEffect(()=>{
-  if(isauth)
-setisauth(true)
-else{
-  setisauth(false);
-}
-},[isauth])
+
+
 
   return (
     <Box border={"2px solid rgb(42,40,42)"} style={{width:"100%"}} h={"12vh"}>
@@ -195,7 +196,7 @@ else{
           
   isauth ?
   <Text fontWeight={"bold"}>
-    <p>{"Hi, " + user.name}</p>
+    <p>{`Hi, ${user.name}  `}</p>
   </Text>
 :
           <MdOutlineAccountCircle onClick={()=>{
@@ -253,6 +254,7 @@ else{
       <button onClick={() =>
       {
     setisauth(false)
+    localStorage.clear();
        }
        
        } style={{ backgroundColor: '#498070', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)' }}>
