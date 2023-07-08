@@ -149,12 +149,12 @@ h={"100px"}
                   zIndex={"100"}
                   justifyContent={"space-evenly"}
                 >
-                  <Text onClick={()=>{
+                  <Text cursor={'pointer'} onClick={()=>{
                     navigate("/products")
                   }}>Products</Text>
-                  <Text onClick={scrollToAboutUs}>Abou Us</Text>
-                  <Text onClick={scrollToBlog}>Our Blog</Text>
-                  <Text onClick={()=>{
+                  <Text cursor={'pointer'} onClick={scrollToAboutUs}>About Us</Text>
+                  <Text cursor={'pointer'} onClick={scrollToBlog}>Our Blog</Text>
+                  <Text cursor={'pointer'} onClick={()=>{
                     navigate("/contact")
                   }}>Contacts</Text>
                 </Flex>

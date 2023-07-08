@@ -1,13 +1,15 @@
-import { Box, Button, Container, Flex, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, Container, Flex, FormControl, FormLabel, Input, useToast } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import { motion, AnimatePresence } from "framer-motion";
 import { Appcontext } from '../ContextProvider/AppcontextProvider';
 import { extendTheme } from "@chakra-ui/react"
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+
+  const toast = useToast()
 
   let [state, setstate] = useState("login");
   let { cart, setCart, isauth, setisauth, user, setuser } = useContext(Appcontext);
@@ -37,10 +39,16 @@ const Login = () => {
     setsignobj({ ...signobj, [e.target.name]: e.target.value })
   }
   let doLogin=async()=>{
-    let res=await axios.post("http://localhost:3001/login",loginobj);
+    let res=await axios.post("http://localhost:3002/login",loginobj);
     console.log(res);
     if(res.data.msg.includes("success")){
-      alert(res.data.msg)
+      toast({
+        position: 'top',
+        title: 'Login Success.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     
       localStorage.setItem("token",res.data.token)
       localStorage.setItem("userName",res.data.userName)
@@ -52,12 +60,24 @@ const Login = () => {
         }
   let doSignup = async () => {
     console.log(signobj)
-    let res = await axios.post('http://localhost:3001/signup', signobj);
+    let res = await axios.post('http://localhost:3002/signup', signobj);
     console.log(res.data);
+    if(res.data.msg.includes("success")){
+      toast({
+        position: 'top',
+        title: 'Account created.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+    else{
+alert(res.data.msg)
+    }
   }
 
   return (
-    <Container>
+    <Container textAlign={'center'}>
       <Flex m={'40px auto'} justifyContent={'space-around'} >
         <Button onClick={() => { setstate("signup") }}
           colorScheme='green' size='lg'

@@ -2,10 +2,10 @@
 let mongoose=require("mongoose");
 let connection=()=>{
    try{ mongoose.connect(process.env.MONGO_URL);
-console.log("atlas connnected")
+console.log("Connnected to Atlas DB ")
 }
    catch(err){
-    console.log("err connecting to atlas")
+    console.log("Error connecting to Atlas DB")
    }
 }
 

@@ -439,10 +439,10 @@ console.log(d);
                   zIndex={"100"}
                   justifyContent={"space-evenly"}
                 >
-                  <Text onClick={gotoproducts}>Products</Text>
-                  <Text onClick={scrollToAboutUs}>Abou Us</Text>
-                  <Text onClick={scrollToBlog}>Our Blog</Text>
-                  <Text onClick={gotocontacts}>Contacts</Text>
+                  <Text cursor={'pointer'} onClick={gotoproducts}>Products</Text>
+                  <Text cursor={'pointer'} onClick={scrollToAboutUs}>About Us</Text>
+                  <Text cursor={'pointer'} onClick={scrollToBlog}>Our Blog</Text>
+                  <Text cursor={'pointer'} onClick={gotocontacts}>Contacts</Text>
                 </Flex>
               </Box>
             </Flex>
@@ -554,7 +554,7 @@ console.log(d);
         <Flex m={"auto"} w={"100%"} gap={"20px"} direction={["column","row","row"]}>
         <Flex justifyContent={"center"} alignItems={"center"} w={"100%"} gap={"20px"} direction={["column","row","row"]}>
         <SimpleGrid columns={[1,1,2]}  gap={"20px"} justifyContent={"center"} alignItems={"center"}>
-          <Flex className='item1' onClick={()=>{
+          <Flex cursor={'pointer'} className='item1' onClick={()=>{
             clickonasingleitem(data[0].id)
           }}  direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
             <Image src={data[0].image} w={"80%"} h={"100%"}></Image>
@@ -574,7 +574,7 @@ console.log(d);
               New Flavour!
             </Flex>
           </Flex>
-          <Flex className='item2'  onClick={()=>{
+          <Flex cursor={'pointer'} className='item2'  onClick={()=>{
             clickonasingleitem(data[1].id)
           }} direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
             <Image src={data[1].image} w={"80%"} h={"100%"}></Image>
@@ -587,7 +587,7 @@ console.log(d);
             <hr style={{width:"90%",border:"1px solid black",}}></hr>
           </Flex>
         </SimpleGrid>
-        <Box className='item3'  onClick={()=>{
+        <Box cursor={'pointer'} className='item3'  onClick={()=>{
             clickonasingleitem(data[2].id)
           }} w={["250px","250px","570px"]} h={["250px","250px","570px"]}  >
 
@@ -609,7 +609,7 @@ console.log(d);
 <br></br>
 
         <Flex gap={"20px"} direction={["column","row","row"]}>
-        <Box h={"250px"} w={"250px"}  onClick={()=>{
+        <Box cursor={'pointer'} h={"250px"} w={"250px"}  onClick={()=>{
             clickonasingleitem(data[3].id)
           }} className='item4'>
         <Flex className='item1' direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
@@ -625,7 +625,7 @@ console.log(d);
           </Flex>
         </Box>
         <Box display={["none","none","block"]} h={"250px"} bg={"white"} w={"250px"}></Box>
-        <Box h={"250px"}  w={"250px"} className='item5'  onClick={()=>{
+        <Box cursor={'pointer'} h={"250px"}  w={"250px"} className='item5'  onClick={()=>{
             clickonasingleitem(data[4].id)
           }}>
         <Flex className='item1' direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
@@ -640,7 +640,7 @@ console.log(d);
             <hr style={{width:"90%",border:"1px solid black",}}></hr>
           </Flex>
         </Box>
-        <Box h={"250px"}  w={"250px"} className='item6' onClick={()=>{
+        <Box cursor={'pointer'} h={"250px"}  w={"250px"} className='item6' onClick={()=>{
             clickonasingleitem(data[5].id)
           }}>
         <Flex className='item1' direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
@@ -660,7 +660,7 @@ console.log(d);
         <br></br>
         
         <Flex gap={"20px"}  direction={["column","row","row"]}>
-        <Box w={["250px","250px","570px"]} h={["250px","250px","570px"]}  onClick={()=>{
+        <Box cursor={'pointer'} w={["250px","250px","570px"]} h={["250px","250px","570px"]}  onClick={()=>{
             clickonasingleitem(data[6].id)
           }} className='item7'>
             <Image h={"80%"} src={data[6].image} w={"80%"} m={"auto"} ></Image>
@@ -678,7 +678,7 @@ console.log(d);
         <Box>
         <SimpleGrid columns={[1,1,2]} gap={"20px"}>
           <Box h={"250px"} bg={"white"} display={["none","none","block"]} w={"250px"}></Box>
-          <Box h={"250px"} w={"250px"} className='item8' onClick={()=>{
+          <Box cursor={'pointer'} h={"250px"} w={"250px"} className='item8' onClick={()=>{
             clickonasingleitem(data[7].id)
           }}>
           <Flex className='item1' direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
@@ -693,10 +693,10 @@ console.log(d);
           </Flex>
 
           </Box>
-          <Box h={"250px"} className='item9'  w={"250px"} onClick={()=>{
+          <Box cursor={'pointer'} h={"250px"} className='item9'  w={"250px"} onClick={()=>{
             clickonasingleitem(data[8].id)
           }}>
-          <Flex className='item1' direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
+          <Flex  className='item1' direction="column" h={"250px"}  w={"250px"} alignItems={"center"} justifyContent={"center"}>
             <Image h={"100%"} src={data[8].image} w={"80%"} ></Image>
             <br></br>
 

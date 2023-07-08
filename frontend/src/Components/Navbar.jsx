@@ -127,7 +127,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
-  
+
   let navigate=useNavigate();
   // let navigate = useNavigate();
     // const { loginWithRedirect, isauth , logout, user } = useAuth0();
@@ -137,15 +137,30 @@ const Navbar = () => {
   const [showSearchBar, setShowSearchBar] =  useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  let {cart,setCart,isauth,setisauth,user,setuser}=useContext(Appcontext);
+  let {cart,setCart,isauth,setisauth,user,setuser,co,setco}=useContext(Appcontext);
 
  useEffect(()=>{
   if(isauth){
     let x=localStorage.getItem("userName");
     console.log(x);
     setuser({name : x});
+    getcartdata();
   }
- },[isauth])
+ },[isauth,co,cart])
+
+ let getcartdata=async()=>{
+  let token = localStorage.getItem("token");
+  let res=await fetch('http://localhost:3002/myproducts',
+  {
+    "Content-Type":"application/json",
+    headers:{
+        Authorization:`Bearer ${token}`
+    }
+});
+  let jdata=await res.json();
+
+  setco(jdata.data.length);
+ }
 
 
   const handleButtonClick = () => {
@@ -163,7 +178,7 @@ const Navbar = () => {
   };
 
 
-  const cartItemCount = cart.length;
+
 
 
 
@@ -176,10 +191,10 @@ const Navbar = () => {
    
     <Flex style={{width:"80%",margin:"0px auto",padding:"0px",justifyContent:"space-between",alignItems:"center",}}>
 
-      <Box borderLeft={"2px solid black"} borderRight={"2px solid black"} paddingLeft={"10"}  paddingRight={"10"}  h={"50px"} onClick={()=>{
+      <Box  borderLeft={"2px solid black"} borderRight={"2px solid black"} paddingLeft={"10"}  paddingRight={"10"}  h={"50px"} onClick={()=>{
         navigate("/")
       }}>
-        <Heading>LET IT BEE.CO</Heading>
+        <Heading cursor={'pointer'}>LET IT BEE.CO</Heading>
       </Box>
 
       <Box>
@@ -189,7 +204,7 @@ const Navbar = () => {
 
       <Flex alignItems={"center"} justifyContent={"center"} gap={"40px"}>
 
-        <Box onClick={handleSearch} pt={"10px"} pr={"30px"} pl={" 30px "} borderLeft={"2px solid black"} borderRight={"2px solid black"} h={"50px"} ><AiOutlineSearch  style={{fontSize:"30px"}}/></Box>
+        <Box onClick={handleSearch} pt={"10px"} pr={"30px"} pl={" 30px "} borderLeft={"2px solid black"} borderRight={"2px solid black"} h={"50px"} cursor={'pointer'} ><AiOutlineSearch  style={{fontSize:"30px"}}/></Box>
 
         <Box  h={"50px"} pt={"10px"}>{
           
@@ -223,7 +238,7 @@ const Navbar = () => {
 
           
 
-          <Badge borderRadius={"full"} background={"#F05A1F"}>{cartItemCount}</Badge>
+          <Badge borderRadius={"full"} background={"#F05A1F"}>{co}</Badge>
         </Box>
 
         
@@ -235,7 +250,11 @@ const Navbar = () => {
           justifyContent="center"
           cursor="pointer"
           onClick={()=>{
-             navigate("/cart")
+            if(isauth){
+              navigate("/cart")
+            }else{
+              navigate("/login")
+            }
           }}
         >
           {/* Your cart icon here */

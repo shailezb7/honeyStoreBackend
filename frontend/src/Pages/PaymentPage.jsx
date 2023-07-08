@@ -13,7 +13,7 @@ const PaymentPage = () => {
   const { cart } = useContext(Appcontext);
   const [animationStarted, setAnimationStarted] = useState(false);
   let getdata=async ()=>{
-    let res= await axios.get('http://localhost:3001/ordered',
+    let res= await axios.get('http://localhost:3002/ordered',
     {
       "Content-Type":"application/json",
       headers:{

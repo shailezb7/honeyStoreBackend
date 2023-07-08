@@ -43,7 +43,7 @@ settotalPrice(totalPrice+p)
         quantity:quant
       }
       console.log(obj);
-      let res=await axios.post('http://localhost:3001/addtocart',obj,
+      let res=await axios.post('http://localhost:3002/addtocart',obj,
       {
         "Content-Type":"application/json",
         headers:{
@@ -64,7 +64,7 @@ settotalPrice(totalPrice+jdata.price)
 
   };
   let tryit=async ()=>{
-    let res= await axios.get('http://localhost:3001/products');
+    let res= await axios.get('http://localhost:3002/products');
     console.log(res);
   }
 console.log(totalPrice)

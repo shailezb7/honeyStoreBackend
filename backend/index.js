@@ -29,14 +29,14 @@ app.post("/signup",async(req,res)=>{
     let {name,email,password}=req.body
     let user=await Usermodel.findOne({email})
 if(user){
-    res.send({msg:"pls login"})
+    res.send({msg:"User Exist ! Please Login "})
 }   else{
     try{
         let hash=bcrypt.hashSync(password,4);
 await Usermodel.create({name,email,password:hash})
-res.send({msg:"user sign up success"})        
+res.send({msg:"User sign up success"})        
     }catch(err){
-        res.send({msg:"error to sign up"})
+        res.send({msg:"Error during Signup"})
     }
 }
 })
@@ -52,13 +52,13 @@ if(match){
     let token=jwt.sign({userID:user._id},process.env.SECRET_KEY);
     res.send({msg:"login success",token,userName:user.name})
 }else{
-    res.send({msg:"invalid credentials"})
+    res.send({msg:"Invalid Credentials"})
 }
 }catch(err){
-    res.send({msg:"login failed"})
+    res.send({msg:"Login Failed"})
 }
 }else{
-    res.send({msg:"sign up first"});
+    res.send({msg:"Please Signup first"});
 }
 
 })
@@ -393,7 +393,7 @@ let data=[
 app.get('/myproducts',authenticate,async(req,res)=>{
     let mycart=  await Cartmodel.find({userID:req.userID});
     res.status(200).send({msg:'cart data',data:mycart});
-})
+})     
 
 app.post("/addtocart", authenticate,async(req,res)=>{
     try {
@@ -426,5 +426,5 @@ app.get('/ordered',authenticate,async(req,res)=>{
 
 app.listen(process.env.PORT,()=>{
     connection()
-    console.log("listening at port 3001")
+    console.log(`Server running at port ${process.env.PORT}`);
 })

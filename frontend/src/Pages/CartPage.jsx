@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading,HStack,Input,Text, VStack,Checkbox,Image, Center } from '@chakra-ui/react'
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, json, useNavigate } from 'react-router-dom'
 import { Appcontext } from '../ContextProvider/AppcontextProvider';
 
 const CartPage = () => {
@@ -19,11 +19,12 @@ const CartPage = () => {
   let [cvv,setcvv]=useState([]);
   let [exp,setexp]=useState([]);
   let[total,setTotal]=useState(0);
+  
   let {cart,setCart,page,setPage,itemwithquant,setitemwithquant,totalPrice,settotalPrice}=useContext(Appcontext);
 
   let token = localStorage.getItem("token");
   let getdata=async()=>{
-    let res=await fetch('http://localhost:3001/myproducts',
+    let res=await fetch('http://localhost:3002/myproducts',
     {
       "Content-Type":"application/json",
       headers:{
@@ -53,8 +54,15 @@ const CartPage = () => {
 
     //   }
     // }
+    console.log(jdata)
+    let x=0;
+    for(let i=0;i<jdata.length;i++){
+      x+=jdata[i].price*jdata[i].quantity;
+    }
+    settotalPrice(x);
     setallitems(jdata);
     setCart(jdata);
+
   }
   console.log(allitems)
 

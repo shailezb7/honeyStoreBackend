@@ -152,10 +152,10 @@ function AboutUsPage() {
                   zIndex={"100"}
                   justifyContent={"space-evenly"}
                 >
-                  <Text onClick={gotoproducts}>Products</Text>
-                  <Text onClick={scrollToAboutUs}>Abou Us</Text>
-                  <Text onClick={scrollToBlog}>Our Blog</Text>
-                  <Text onClick={gotocontacts}>Contacts</Text>
+                  <Text cursor={'pointer'} onClick={gotoproducts}>Products</Text>
+                  <Text cursor={'pointer'} onClick={scrollToAboutUs}>About Us</Text>
+                  <Text cursor={'pointer'} onClick={scrollToBlog}>Our Blog</Text>
+                  <Text cursor={'pointer'} onClick={gotocontacts}>Contacts</Text>
                 </Flex>
               </Box>
             </Flex>
